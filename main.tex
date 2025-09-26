@@ -1,0 +1,247 @@
+\documentclass[11pt,oneside]{article}
+
+% All packages/macros live here (includes hyperref+doi and \DefaultBibStyle):
+\input{other_tex/format_macros.tex}
+
+% Optional math + theorem layers (safe if absent/empty)
+\IfFileExists{other_tex/math.tex}{\input{other_tex/math.tex}}{}
+\IfFileExists{other_tex/theorems.tex}{\input{other_tex/theorems.tex}}{}
+
+% -------------
+% Metadata
+% -------------
+\title{\PaperTitleMain}
+\ifdefined\Authors
+  \author{\Authors}
+\else\ifdefined\AuthorName
+  \author{\AuthorName}
+\else
+  \author{Author Name}
+\fi\fi
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% Dedication inline under the title (no page break)
+\IfFileExists{other_tex/dedication.tex}{%
+  \vspace{0.75\baselineskip}\input{other_tex/dedication.tex}%
+}{}
+
+% ============================
+% Abstract
+% ============================
+\clearpage
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\input{other_tex/abstract.tex}
+
+% ============================
+% Notation & units
+% ============================
+\clearpage
+\section*{Notation \& units}
+\noindent\textit{Conventions:} Angular frequencies are in rad/s; cyclic frequencies in Hz with $f=\omega/2\pi$. The mass--stiffness dictionary is $m=\hbar\,\omega_0/c^2$. Superscripts label sectors, e.g.\ $\omega_0^{(H)}$ (Higgs), $\omega_0^{(W)}$, $\omega_0^{(Z)}$, $\omega_0^{(f)}$ (fermion), $\omega_0^{(\nu)}$ (neutrino), $\omega_0^{\mathrm{QCD}}$ (hadronic), $\omega_0^{\mathrm{lat}}$ (lattice).
+
+\begin{table}[htbp]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.32\linewidth} >{\raggedright\arraybackslash}X@{}}
+\hline
+\textbf{Symbol} & \textbf{Meaning (units)} \\
+\hline
+$c$ & Speed of light (m\,s$^{-1}$) \\
+$h,\ \hbar=h/2\pi$ & Planck constant / reduced Planck constant (J\,s) \\
+$k_B$ & Boltzmann constant (J\,K$^{-1}$) \\
+$\omega_0$ & Temporal stiffness (onsite angular frequency) (s$^{-1}$) \\
+$m$ & Mass; $m=\hbar\,\omega_0/c^2$ (kg) \\
+$\boldsymbol{\kappa},\ \kappa=\|\boldsymbol{\kappa}\|$ & Wavevector / magnitude (m$^{-1}$) \\
+$\omega,\ f$ & Angular / cyclic frequency (s$^{-1}$, Hz) \\
+$v_g$ & Group velocity $=c^2\kappa/\omega$ (m\,s$^{-1}$) \\
+$f_C$ & Compton clock frequency $=mc^2/h$ (Hz) \\
+\hline
+$v$ & Higgs vacuum expectation value ($\approx 246$ GeV) \\
+$k_H$ & Higgs-to-rate normalization (dimensionless) \\
+$c_X$ & Species coupling factor (dimensionless) \\
+$y_f$ & Yukawa coupling (dimensionless) \\
+$g,\ g'$ & Electroweak gauge couplings (dimensionless) \\
+$\lambda$ & Higgs quartic coupling (dimensionless) \\
+\hline
+$\Lambda_{\mathrm{QCD}}$ & QCD scale ($\sim 200$ MeV) \\
+$\omega_0^{\mathrm{QCD}}$ & Hadronic effective stiffness (s$^{-1}$) \\
+$\Theta_D$ & Debye temperature (K) \\
+$\omega_0^{\mathrm{lat}}$ & Lattice stiffness $=k_B\Theta_D/\hbar$ (s$^{-1}$) \\
+$\omega_p$ & Electronic plasma angular frequency (s$^{-1}$) \\
+\hline
+$L,\ E$ & Baseline length (m), energy (J or eV) \\
+$\Delta m^2$ & Neutrino mass-squared difference (eV$^2$) \\
+$\Delta\phi$ & Oscillation phase $\simeq \Delta m^2 c^3 L/(2\hbar E)$ (rad) \\
+\hline
+$r(\lambda)$ & Long-wavelength residual (fractional deviation; dimensionless).\\
+& Fades as $r(\lambda)\lesssim A(\xi_g/\lambda)^p$. \\
+$\xi_g$ & Substrate grain scale (m) \\
+$A,\ p$ & Fade-out amplitude and exponent in $r$; $p>0$ (dimensionless) \\
+\hline
+$\mathcal{L}$ & Lagrangian density \\
+$\psi$ & Scalar probe field \\
+\hline
+\end{tabularx}
+\end{table}
+
+% ============================
+% Main text
+% ============================
+\clearpage
+\section*{Scope}
+We define mass in one line: \emph{mass is temporal stiffness}, \(m=\hbar\,\omega_0/c^2\).
+Here we expand that definition to show how the same knob explains three very different
+realms: Higgs masses, QCD binding masses, and the nearly massless neutrinos.
+We also connect to how laboratories actually measure mass today.
+
+\section{Recap: the stiffness dictionary}
+The dispersion relation with an on-site (per-eigenstate) stiffness frequency \(\omega_0\) is
+\begin{equation}
+\omega^2 \;=\; c^2\kappa^2 \,+\, \omega_0^2,
+\label{eq:st-dispersion}
+\end{equation}
+which is the Klein--Gordon--type relation expected from a minimal onsite term.%
+\footnote{Gravity and curvature couplings are deferred to a companion article; all statements here are non-gravitational.}
+Throughout, \(\omega_0\) is defined \emph{per mass eigenstate}; for composites (e.g.\ hadrons) it is the effective stiffness of the bound state at the hadronic scale, not a sum of constituent \(\omega_0\)'s.
+Group velocities satisfy \(v_g=\tfrac{d\omega}{d\kappa}=\tfrac{c^2\kappa}{\omega}\le c\), while the \emph{front/signal} speed remains fixed at \(c\), cleanly separating propagation speed from local phase rate.
+
+\paragraph{Minimal dynamics (constructive).}
+A least-action model that reproduces \eqref{eq:st-dispersion} without invoking gravity is
+\[
+\mathcal{L}
+=\tfrac{1}{2}\Big(|\partial_t\psi|^2-c^2|\nabla\psi|^2\Big)-\tfrac{1}{2}\,\omega_0^2\,|\psi|^2,
+\]
+which yields the dispersion above and the dictionary \(m=\hbar\,\omega_0/c^2\).
+(For fermions, the Dirac Lagrangian reproduces the same \(\omega^2\) relation at the level of plane-wave eigenvalues.)
+
+\section{Higgs: vacuum stiffness}
+
+\paragraph{Normalization \(k_H\): what it is and why keep it.}
+We introduce a universal, dimensionless calibration that maps the Standard-Model Higgs vacuum expectation value \(v\approx 246~\mathrm{GeV}\) (an energy scale) to a background stiffness rate:
+\begin{equation}
+\omega_0^{\mathrm{Higgs}} \;=\; k_H\,\frac{v}{\hbar},\qquad k_H\ \text{dimensionless}.
+\label{eq:kH_def}
+\end{equation}
+This keeps the conversion from an energy scale to a rate explicit and model-aware \cite{tiesinga2021codata}. In the \emph{minimal} identification one may set \(k_H=1\). We retain \(k_H\) to make clear that there is a single, species-independent normalization from the SM scale \(v\) to the stiffness rate. Once \(k_H\) is fixed by \emph{any} one mass measurement (e.g.\ \(m_H\) or \(m_W\)), all other masses follow from their couplings with no further freedom. Indeed, for any species \(X\) with coupling factor \(c_X\) (e.g.\ \(c_f=y_f/\sqrt{2}\), \(c_W=g/2\), \(c_Z=\sqrt{g^2+g'^2}/2\), \(c_H=\sqrt{2\lambda}\)),
+\begin{equation}
+\omega_0^{(X)} \;=\; c_X\,\frac{v}{\hbar} \;=\; \frac{c_X}{k_H}\,\omega_0^{\mathrm{Higgs}},
+\qquad
+m_X \;=\; \frac{\hbar\,\omega_0^{(X)}}{c^2}.
+\label{eq:species_w0_general}
+\end{equation}
+Because \(m_X\propto c_X v\), the explicit \(k_H\) cancels in any \emph{measured} mass once \(\omega_0^{\mathrm{Higgs}}\) is expressed via \eqref{eq:kH_def}. Thus \(k_H\) is a convenient global normalization (we set \(k_H=1\) by convention after this section), not an extra physical parameter.
+
+\paragraph{Yukawa fractions and gauge sectors.}
+For fermions with Yukawa \(y_f\),
+\begin{equation}
+\label{eq:w0_fermion}
+\begin{aligned}
+m_f \;=\; \frac{y_f v}{\sqrt{2}},\qquad
+\omega_0^{(f)} \;=\; \frac{m_f c^2}{\hbar}
+                 \;=\; \frac{y_f}{\sqrt{2}}\,\frac{v}{\hbar}
+                 \;=\; \frac{y_f}{\sqrt{2}\,k_H}\,\omega_0^{\mathrm{Higgs}}.
+\end{aligned}
+\end{equation}
+
+Electroweak gauge bosons:
+\begin{equation}
+\label{eq:w0_WZ}
+\begin{aligned}
+\omega_0^{(W)} \;=\; \frac{g}{2}\,\frac{v}{\hbar}
+                   \;=\; \frac{g}{2k_H}\,\omega_0^{\mathrm{Higgs}},\\[4pt]
+\omega_0^{(Z)} \;=\; \frac{\sqrt{g^2+g'^2}}{2}\,\frac{v}{\hbar}
+                   \;=\; \frac{\sqrt{g^2+g'^2}}{2k_H}\,\omega_0^{\mathrm{Higgs}}.
+\end{aligned}
+\end{equation}
+
+Higgs scalar:
+\begin{equation}
+\label{eq:w0_H}
+\begin{aligned}
+\omega_0^{(H)} \;=\; \frac{m_H c^2}{\hbar}
+                   \;=\; \frac{\sqrt{2\lambda}\,v}{\hbar}
+                   \;=\; \frac{\sqrt{2\lambda}}{k_H}\,\omega_0^{\mathrm{Higgs}}.
+\end{aligned}
+\end{equation}
+
+\paragraph{Calibration example (one-line check).}
+Using \(m_W=\tfrac{g v}{2}\) in \eqref{eq:kH_def} fixes \(v\) (equivalently \(k_H\)), and then \eqref{eq:w0_WZ} predicts \(m_Z=\tfrac{\sqrt{g^2+g'^2}}{2}\,v\) with no extra freedom.
+
+\section{QCD: binding stiffness}
+Most of the proton mass (\(\sim 938~\mathrm{MeV}\)) is not from quark rest energies but from binding. An effective stiffness \(\omega_0^{\mathrm{QCD}}\sim\Lambda_{\mathrm{QCD}}/\hbar\) (order-of-magnitude) captures the collective oscillation; the scheme/scale-dependent partition among \(\langle T_g\rangle,\langle T_q\rangle,\langle V\rangle,\Delta_{\rm anom}\) is not separately physical \cite{krane1988introductory}.
+
+\section{Neutrinos: minimal stiffness}
+With small \(\omega_0^\nu\), group speeds obey \(v_g=c^2\kappa/\omega\le c\) while the front speed remains \(c\).
+Oscillation phenomenology here is agnostic to the Dirac/Majorana nature; only \(\Delta m^2\) and mixings enter.
+The relative phase between two eigenstates is
+\(
+\Delta\phi \simeq \Delta m^2 c^3 L/(2\hbar E)
+\),
+and measured probabilities involve \(\sin^2(\Delta\phi/2)\); speed bounds are extremely tight \cite{griffiths2018quantum}.
+
+\section{Examples and readouts}
+Compton clocks (\(f_C=mc^2/h\)), Debye/plasma anchors (\(\omega_0^{\rm lat}=k_B\Theta_D/\hbar\), \(\omega_p\)), and spectroscopy/interferometry read stiffness in Hz \cite{bipm2019si,callen1985thermodynamics,jackson1999classical}.
+\textit{Representative scales:} electron Compton \(f_C \approx 1.24\times 10^{20}\,\mathrm{Hz}\);
+iron Debye \(\omega_0^{\rm lat}\approx 6.1\times 10^{13}\,\mathrm{s^{-1}}\);
+typical metal plasma \(\omega_p\sim 2\text{--}3\times 10^{15}\,\mathrm{s^{-1}}\).
+
+\paragraph{Falsifier and bounds.}
+Define a dimensionless residual \(r(\lambda)\) as a fractional deviation in a long-wavelength observable (e.g.\ dispersion, anisotropy, or phase--ToF mismatch) at wavelength \(\lambda\).
+Substrate signatures must \emph{fade out} for \(\lambda\gg \xi_g\) as
+\[
+r(\lambda)\ \lesssim\ A\big(\xi_g/\lambda\big)^{p},\qquad p>0,
+\]
+where \(\xi_g\) is the grain scale and \(A\) a dimensionless amplitude.
+Cavity tests, clock-comparison spectroscopies, and interferometers bound \((A,p)\); here we treat them as fit parameters to be reported with each experiment.
+
+% ============================
+% Back to front-matter flow
+% ============================
+
+% Acknowledgements
+\clearpage
+\section*{Acknowledgements}
+\IfFileExists{other_tex/acknowledgments.tex}{\input{other_tex/acknowledgments.tex}}{}
+
+% Statements & housekeeping (each optional)
+\section*{Competing interests}
+\IfFileExists{other_tex/competing_interests.tex}{\input{other_tex/competing_interests.tex}}{}
+
+\section*{Author contributions}
+\IfFileExists{other_tex/authors_contributions.tex}{\input{other_tex/authors_contributions.tex}}{}
+
+\section*{Funding}
+\IfFileExists{other_tex/funding.tex}{\input{other_tex/funding.tex}}{}
+
+\section*{Data and materials availability}
+\IfFileExists{data_accessibility.tex}{\input{data_accessibility.tex}}{No new data were generated.}
+
+\section*{Disclosure}
+\IfFileExists{other_tex/disclosure.tex}{\input{other_tex/disclosure.tex}}{}
+
+% ============================
+% Companion works and DOIs
+% ============================
+\section*{Companion works and DOIs}
+\addcontentsline{toc}{section}{Companion works and DOIs}
+
+\begin{itemize}\setlength\itemsep{0.25em}
+  \item \textit{Temporal Relativity} (Zenodo, 2025): \doi{10.5281/zenodo.17119049}.
+  \item \textit{Planck-Cell Kinematics} (Zenodo, 2025): \doi{10.5281/zenodo.17168478}.
+\end{itemize}
+
+% ============================
+% Bibliography (BibTeX)
+% ============================
+\clearpage
+\nocite{*} % avoid Empty thebibliography even with zero explicit \cite
+\bibliographystyle{\DefaultBibStyle} % prints clickable DOI/URL when plainurl.bst is present
+\bibliography{bibliography}
+
+\end{document}

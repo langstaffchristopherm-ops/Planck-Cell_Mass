@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Planck-Cell Mass"
+abstract: >
+  Defines mass as the temporal stiffness of the Planck-Cell medium,
+  with the dictionary m = ħ ω₀ / c². Presents the dispersion relation
+  ω² = c² κ² + ω₀² and identifies Higgs, QCD, and neutrino stiffness regimes.
+  Connects ω₀ to Compton clocks, Debye frequencies, and spectroscopy.
+  Repository contains release PDF and LaTeX source.
+
+authors:
+  - family-names: "Langstaff"
+    given-names: "Christopher Michael"
+
+version: "v2.0.3"
+date-released: "2025-10-23"
+repository-code: "https://github.com/langstaffchristopherm-ops/Planck-Cell_Mass"
+url: "https://github.com/langstaffchristopherm-ops/Planck-Cell_Mass"
+license: "CC-BY-4.0"
+
+doi: "10.5281/zenodo.17428181"
+
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.17209646"
+
+preferred-citation:
+  type: article
+  title: "Planck-Cell Mass"
+  authors:
+    - family-names: "Langstaff"
+      given-names: "C."
+  year: 2025
+  doi: "10.5281/zenodo.17428181"
+  url: "https://doi.org/10.5281/zenodo.17428181"
+  journal: "Zenodo"

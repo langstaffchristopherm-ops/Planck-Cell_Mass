@@ -1,0 +1,131 @@
+\section*{Notation}
+
+\noindent\textbf{Conventions.}  
+Time and entropy advance in discrete, \emph{dimensionless ticks}. 
+A single primitive cell unit is created per tick, giving
+\[
+  \Delta S = \Delta \tau.
+\]
+Physical mapping is applied only when necessary:
+\[
+  S_{\mathrm{phys}} = k_B\,S, \qquad
+  \tau_s = t_P\,\tau.
+\]
+Fundamental constants: speed of light \(c\), reduced Planck constant \(\hbar\), and Boltzmann constant \(k_B\).
+
+\smallskip
+\noindent\textit{Native--SI correspondence.}  
+One hop per tick implies \(\mathrm{d}a/\mathrm{d}\tau = 1\).  
+Choosing a length per hop \(\ell_0\) and a time per tick \(t_0\) yields
+\[
+  c = \frac{\ell_0}{t_0}.
+\]
+
+\bigskip
+\noindent\textbf{Core quantities.}
+\begin{description}[leftmargin=2.4em,labelsep=0.8em]
+  \item[\(k\)] Tick index (integer). The scale factor \(a(k)\) is defined with respect to ticks, baseline \(a(k)\propto k^{1/3}\).
+  \item[\(\Delta S,\,\Delta\tau\)] Primitive-cell and proper-time tick \emph{counts} (dimensionless) satisfying \(\Delta S=\Delta\tau\).
+\end{description}
+
+\noindent\textbf{Graph and geometric parameters.}
+\begin{description}[leftmargin=2.4em,labelsep=0.8em]
+  \item[\(d_G(x,y)\)] Graph (hop) distance between vertices \(x\) and \(y\).
+  \item[\(\ell_N\)] Typical interior hop length for a sample of size \(N\).
+  \item[\(\varepsilon_N,\,\delta_N\)] Mesh non-uniformity and directional-bias parameters (\(\to 0\) as \(N\to\infty\)).
+  \item[\(\eta_N\)] Combined small parameter: \(\eta_N := C_1\varepsilon_N + C_2\delta_N.\)
+  \item[\(\mathrm{distortion}(N)\)] Bilipschitz distortion of the graph metric relative to the ambient metric:
+  \[
+    \mathrm{distortion}(N)
+      = \sup_{x,y}
+        \max\!\left\{
+          \frac{d_G(x,y)}{\|x-y\|},\,
+          \frac{\|x-y\|}{d_G(x,y)}
+        \right\}-1.
+  \]
+\end{description}
+
+\noindent\textbf{Mass-specific quantities.}
+\begin{description}[leftmargin=2.4em,labelsep=0.8em]
+  \item[\(m\)] Rest mass; \(m_P\) denotes the Planck mass.
+  \item[\(E=mc^2,\,p^\mu\)] Energy and four-momentum.
+  \item[\(\rho\)] Mass or energy density when a continuum limit is invoked.
+  \item[\(\beta\)] Weak-field redshift slope, \(\Delta\nu/\nu = \beta\,\Delta\Phi/c^2.\)
+  \item[\(\hat\beta\)] Estimator: \(\hat\beta = (\Delta\nu/\nu)\big/(\Delta\Phi/c^2).\)
+  \item[\(\chi\)] Local entropy–time update rate, \(\chi := S/t\) (units s\(^{-1}\)); used when relating drift fields to weak-field behavior.
+  \item[\(\xi_g\)] Effective grain scale (typical neighbor spacing) used in residuals \(r(\lambda)\propto(\xi_g/\lambda)^p.\)
+\end{description}
+
+\bigskip
+\noindent\textbf{Mass–frequency relation.}
+\begin{equation}
+  1.62 \;:=\; k_H \frac{v}{\hbar},
+  \qquad \text{where $k_H$ is dimensionless.}
+  \label{eq:kH_def}
+\end{equation}
+This keeps the conversion from an energy scale to a rate explicit and model-aware \cite{tiesinga2021codata}.
+In the \emph{minimal} identification one may set \(k_H=1\).
+We retain \(k_H\) to emphasize that there is a single, species-independent normalization from the Standard-Model scale \(v\) to the stiffness rate.
+Once \(k_H\) is fixed by any one mass measurement (e.g.\ \(m_H\) or \(m_W\)), all other masses follow from their couplings with no further freedom.
+For any species \(X\) with coupling factor \(c_X\) (e.g.\ \(c_f=y_f/\sqrt{2}\), \(c_W=g/2\), \(c_Z=\sqrt{g^2+g'^2}/2\), \(c_H=\sqrt{2\lambda}\)),
+
+\begin{equation}
+  \omega_0^{(X)}
+    = c_X\,\frac{v}{\hbar}
+    = \frac{c_X}{k_H}\,\omega_0^{\mathrm{Higgs}},
+  \qquad
+  m_X
+    = \frac{\hbar\,\omega_0^{(X)}}{c^2}.
+  \label{eq:species_w0_general}
+\end{equation}
+
+Because \(m_X\propto c_X v\), the explicit \(k_H\) cancels in any measured mass once \(\omega_0^{\mathrm{Higgs}}\) is expressed via \eqref{eq:kH_def}.
+Thus \(k_H\) serves as a convenient global normalization (set \(k_H=1\) after this section), not an extra physical parameter.
+
+\paragraph{Yukawa fractions and gauge sectors.}
+For fermions with Yukawa coupling \(y_f\),
+\begin{equation}
+  m_f = \frac{y_f v}{\sqrt{2}}, \qquad
+  \omega_0^{(f)} = \frac{m_f c^2}{\hbar}
+                 = \frac{y_f}{\sqrt{2}}\,\frac{v}{\hbar}
+                 = \frac{y_f}{\sqrt{2}\,k_H}\,\omega_0^{\mathrm{Higgs}}.
+  \label{eq:w0_fermion}
+\end{equation}
+
+Electroweak gauge bosons:
+\begin{align}
+  \omega_0^{(W)} &= \frac{g}{2}\,\frac{v}{\hbar}
+                  = \frac{g}{2k_H}\,\omega_0^{\mathrm{Higgs}}, \label{eq:w0_W}\\[4pt]
+  \omega_0^{(Z)} &= \frac{\sqrt{g^2+g'^2}}{2}\,\frac{v}{\hbar}
+                  = \frac{\sqrt{g^2+g'^2}}{2k_H}\,\omega_0^{\mathrm{Higgs}}. \label{eq:w0_Z}
+\end{align}
+
+Higgs scalar:
+\begin{equation}
+  \omega_0^{(H)} = \frac{m_H c^2}{\hbar}
+                 = \frac{\sqrt{2\lambda}\,v}{\hbar}
+                 = \frac{\sqrt{2\lambda}}{k_H}\,\omega_0^{\mathrm{Higgs}}.
+  \label{eq:w0_H}
+\end{equation}
+
+\paragraph{Calibration example.}
+Using \(m_W = \tfrac{g v}{2}\) in \eqref{eq:kH_def} fixes \(v\) (or equivalently \(k_H\)),
+and then \eqref{eq:w0_W}, \eqref{eq:w0_Z} predict \(m_Z = \tfrac{\sqrt{g^2+g'^2}}{2}\,v\) with no extra freedom.
+
+\bigskip
+\noindent\textbf{Quick symbol summary.}
+\begin{description}[leftmargin=2.4em,labelsep=0.8em]
+  \item[\(\ell_P\)] Planck-cell edge or hop length.
+  \item[\(t_P\)] Planck tick (one global update interval).
+  \item[\(c=\ell_P/t_P\)] Causal speed cap (one hop per tick).
+  \item[\(k\)] Discrete tick index (global ledger step).
+  \item[\(R(k)\)] Front radius after \(k\) ticks.
+  \item[\(N(k)\)] Number of active/born cells after \(k\) ticks.
+  \item[\(L\)] Continuum baseline distance.
+  \item[\(d_G\)] Graph (hop) distance.
+  \item[\(T(L)\)] Transit time over baseline \(L\).
+  \item[\(v_g\)] Group or front speed.
+  \item[\(E,\,\hbar\)] Energy and reduced Planck constant.
+  \item[\(\Delta\phi\)] Accumulated phase along the path.
+  \item[\(\lambda\)] Wavelength of the probe signal.
+\end{description}
